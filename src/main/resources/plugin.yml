@@ -1,0 +1,13 @@
+name: monPlugin
+version: '${project.version}'
+main: fr.theo.monplugin.MonPlugin
+api-version: 1.19
+authors: [theo]
+description: Mon premier plugin
+commands:
+  test:
+    description: Ceci est un test
+    permission: test.use
+  money:
+    description: Ceci est pour voir son argent
+    permission: money.use
