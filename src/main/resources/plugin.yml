@@ -1,6 +1,6 @@
-name: monPlugin
+name: Gedonna
 version: '${project.version}'
-main: fr.theo.monplugin.MonPlugin
+main: fr.team.Gedonna.Main
 api-version: 1.19
 authors: [theo]
 description: Mon premier plugin

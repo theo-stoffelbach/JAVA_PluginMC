@@ -1,4 +1,4 @@
-package fr.theo.monplugin.DB;
+package fr.team.Gedonna.DB;
 
 import java.sql.SQLException;
 

@@ -1,4 +1,4 @@
-package fr.theo.monplugin.commands;
+package fr.team.Gedonna.commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

@@ -1,13 +1,12 @@
-package fr.theo.monplugin.DB;
+package fr.team.Gedonna.DB;
 
 import java.sql.Connection;
-import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 
 public class DbConnection {
-    private DbCredentials dbCredentials;
+    private  DbCredentials dbCredentials;
     private Connection connection;
 
     public DbConnection(DbCredentials dbCredentials) {

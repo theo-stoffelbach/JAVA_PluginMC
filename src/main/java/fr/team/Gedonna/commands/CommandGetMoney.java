@@ -1,6 +1,6 @@
-package fr.theo.monplugin.commands;
+package fr.team.Gedonna.commands;
 
-import fr.theo.monplugin.MonPlugin;
+import fr.team.Gedonna.Main;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -9,11 +9,11 @@ import org.bukkit.entity.Player;
 import java.util.UUID;
 
 public class CommandGetMoney implements CommandExecutor {
-    private MonPlugin monPlugin;
+    private Main monPlugin;
     public UUID a = UUID.fromString("8821ab22-aed3-4cfb-9410-bcb05fe57f0c");
     public Integer b = 1000;
 
-    public CommandGetMoney(MonPlugin monPlugin) {
+    public CommandGetMoney(Main monPlugin) {
         this.monPlugin = monPlugin;
     }
 

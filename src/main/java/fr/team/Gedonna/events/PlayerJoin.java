@@ -1,20 +1,19 @@
-package fr.theo.monplugin.events;
+package fr.team.Gedonna.events;
 
-import fr.theo.monplugin.DB.DbConnection;
-import fr.theo.monplugin.MonPlugin;
+import fr.team.Gedonna.DB.DbConnection;
+import fr.team.Gedonna.Main;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 import java.sql.*;
-import java.util.HashMap;
 import java.util.UUID;
 
 public class PlayerJoin implements Listener {
 
-    private MonPlugin monPlugin;
+    private Main monPlugin;
 
-    public PlayerJoin(MonPlugin monPlugin) {
+    public PlayerJoin(Main monPlugin) {
         this.monPlugin = monPlugin;
     };
 

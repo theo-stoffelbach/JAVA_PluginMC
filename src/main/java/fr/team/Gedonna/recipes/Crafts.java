@@ -1,4 +1,4 @@
-package fr.theo.monplugin.recipes;
+package fr.team.Gedonna.recipes;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;

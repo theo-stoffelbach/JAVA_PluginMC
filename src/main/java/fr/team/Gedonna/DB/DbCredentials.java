@@ -1,11 +1,11 @@
-package fr.theo.monplugin.DB;
+package fr.team.Gedonna.DB;
 
 public class DbCredentials {
-    private String host;
-    private String user;
-    private String pass;
-    private String dbName;
-    private int port;
+    private final String host;
+    private final String user;
+    private final String pass;
+    private final String dbName;
+    private final int port;
 
     public DbCredentials(String host, String user, String pass, String dbName, int port) {
         this.host = host;
