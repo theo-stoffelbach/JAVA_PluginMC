@@ -1,6 +1,16 @@
-name: MyPlugin
-version: 1.0
-author: Utoka
+name: myPlugin
+version: '${project.version}'
+main: fr.utoka.myplugin.MyPlugin
 api-version: 1.19
-main: fr.utoka.myplugin.myplugin
+authors: [Utoka]
 description: MC
+commands:
+  test:
+    description: Envois message test
+    permission: test.use
+  alert:
+    description: Envois un broadcast
+    permission: alert.use
+  aide:
+    description: Aide pour les commandes
+    permission: aide.use
