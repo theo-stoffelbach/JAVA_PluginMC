@@ -1,5 +1,5 @@
 name: myPlugin
-version: '${project.version}'
+version: '1.0-SNAPSHOT'
 main: fr.utoka.myplugin.MyPlugin
 api-version: 1.19
 authors: [Utoka]
