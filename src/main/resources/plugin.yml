@@ -5,6 +5,12 @@ api-version: 1.19
 authors: [Utoka]
 description: MC
 commands:
+  G-getMoney:
+    description: Get money
+    permission: G-getMoney.use
+#  G-giveMoney:
+#    description: Give money
+#    permission: G-giveMoney.use
   test:
     description: Envois message test
     permission: test.use
