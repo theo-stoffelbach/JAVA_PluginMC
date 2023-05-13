@@ -5,12 +5,18 @@ api-version: 1.19
 authors: [Utoka]
 description: MC
 commands:
-  G-getMoney:
-    description: Get money
-    permission: G-getMoney.use
-#  G-giveMoney:
-#    description: Give money
-#    permission: G-giveMoney.use
+  getMoney:
+    description: Afficher son argent
+    permission: getMoney.use
+  removeMoney:
+    description: Enlever de l'argent à quelqu'un ou son argent
+    permission: getMoney.use
+  giveMoney:
+    description: Ajouter de l'argent à quelqu'un ou à soi-même argent
+    permission: giveMoney.use
+  setMoney:
+    description: Remettre l'argent à quelqu'un ou son propre argent à ce qu'on souhaite
+    permission: setMoney.use
   test:
     description: Envois message test
     permission: test.use
