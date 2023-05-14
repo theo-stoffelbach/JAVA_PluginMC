@@ -5,12 +5,15 @@ api-version: 1.19
 authors: [Utoka]
 description: MC
 commands:
-  test:
-    description: Envois message test
+  g-ping:
+    description: Envois pong
     permission: test.use
-  alert:
+  g-alert:
     description: Envois un broadcast
     permission: alert.use
-  aide:
+  g-help:
     description: Aide pour les commandes
-    permission: aide.use
+    permission: g-aide.use
+  g-givesword:
+    description: Give des swords meta
+    permission: g-give.use
