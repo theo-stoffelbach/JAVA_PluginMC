@@ -1,5 +1,6 @@
 package fr.utoka.myplugin.itemEvent;
 
+import fr.utoka.myplugin.events.EventMenu;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
@@ -22,7 +23,7 @@ public class SwordEvent implements Listener {
      */
     public void giveSwordMeta(CommandSender sender, String input) {
         Player player = (Player) sender;
-        EventMenu eventMenu = new EventMenu();
+        fr.utoka.myplugin.events.EventMenu eventMenu = new EventMenu();
         switch (input) {
             case "vampire":
                 player.getInventory().addItem(eventMenu.createMetaItem(Material.NETHERITE_SWORD, ChatColor.DARK_PURPLE + "Vampire Sword", null, null));
@@ -31,7 +32,7 @@ public class SwordEvent implements Listener {
                 player.getInventory().addItem(eventMenu.createMetaItem(Material.NETHERITE_SWORD, ChatColor.GOLD + "Fire Sword", null, null));
                 break;
             case "blood":
-                player.getInventory().addItem(eventMenu.createMetaItem(Material.NETHERITE_SWORD, ChatColor.RED + "Blood Sword", null, Enchantment.DAMAGE_ALL));
+                player.getInventory().addItem(eventMenu.createMetaItem(Material.NETHERITE_SWORD, ChatColor.RED + "Blood Sword", null, null));
                 break;
             case "ice":
                 player.getInventory().addItem(eventMenu.createMetaItem(Material.NETHERITE_SWORD, ChatColor.BLUE + "Ice Sword", null, null));

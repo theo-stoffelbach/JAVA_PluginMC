@@ -7,7 +7,18 @@ description: MC
 commands:
   g-ping:
     description: Envois pong
-    permission: test.use
+  getMoney:
+    description: Afficher son argent
+    permission: getMoney.use
+  removeMoney:
+    description: Enlever de l'argent à quelqu'un ou son argent
+    permission: getMoney.use
+  giveMoney:
+    description: Ajouter de l'argent à quelqu'un ou à soi-même argent
+    permission: giveMoney.use
+  setMoney:
+    description: Remettre l'argent à quelqu'un ou son propre argent à ce qu'on souhaite
+    permission: setMoney.use
   g-alert:
     description: Envois un broadcast
     permission: alert.use
