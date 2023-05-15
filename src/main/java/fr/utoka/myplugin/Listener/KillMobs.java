@@ -26,14 +26,11 @@ public class KillMobs implements Listener {
     if (event.getEntity().getKiller() instanceof Player) {
         CommandMoneyService managementMoney = CommandMoneyService.getInstance();
         player = event.getEntity().getKiller();
-
         for (EntityInfo mobs : EntityInfo.values()) {
             if (mobs.name().equals(mobdeath.getType().toString())) {
-                System.out.println("Yes, c'est un : "+ mobs.name() + " et il va gagné : " + mobs.priceKilled() );
                 managementMoney.addMoneyToHash(player.getUniqueId(), mobs.priceKilled());
             }
         }
-        System.out.println("Joueur : " + player);
     }else {
         return;
     }
