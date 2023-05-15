@@ -5,12 +5,29 @@ api-version: 1.19
 authors: [Utoka]
 description: MC
 commands:
-  test:
-    description: Envois message test
-    permission: test.use
-  alert:
+  g-ping:
+    description: Envois pong
+  getMoney:
+    description: Afficher son argent
+    permission: getMoney.use
+  removeMoney:
+    description: Enlever de l'argent à quelqu'un ou son argent
+    permission: getMoney.use
+  giveMoney:
+    description: Ajouter de l'argent à quelqu'un ou à soi-même argent
+    permission: giveMoney.use
+  setMoney:
+    description: Remettre l'argent à quelqu'un ou son propre argent à ce qu'on souhaite
+    permission: setMoney.use
+  g-alert:
     description: Envois un broadcast
     permission: alert.use
-  aide:
+  g-help:
     description: Aide pour les commandes
-    permission: aide.use
+    permission: g-aide.use
+  g-givesword:
+    description: Give des swords meta
+    permission: g-give.use
+  g-fly:
+    description: Permet de fly
+    permission: g-fly.use
