@@ -1,5 +1,6 @@
 package fr.utoka.myplugin;
 
+import fr.utoka.myplugin.commands.ArtefactEvent;
 import fr.utoka.myplugin.commands.EventMenu;
 import fr.utoka.myplugin.commands.MobsEvent;
 import fr.utoka.myplugin.commands.allCommands;
@@ -15,6 +16,7 @@ public final class MyPlugin extends JavaPlugin {
         getCommand("aide").setExecutor(new allCommands());
         getServer().getPluginManager().registerEvents(new EventMenu(), this);
         getServer().getPluginManager().registerEvents(new MobsEvent(), this);
+        getServer().getPluginManager().registerEvents(new ArtefactEvent(), this);
     }
 
     @Override
