@@ -1,4 +1,4 @@
-package fr.utoka.myplugin.commands;
+package fr.utoka.myplugin.itemEvent;
 
 import java.util.Arrays;
 

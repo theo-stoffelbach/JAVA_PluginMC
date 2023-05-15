@@ -20,7 +20,7 @@ import fr.utoka.myplugin.itemEvent.PowerSword;
 import fr.utoka.myplugin.itemEvent.SwordEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fr.utoka.myplugin.commands.ArtefactEvent;
+import fr.utoka.myplugin.events.ArtefactEvent;
 
 public final class MyPlugin extends JavaPlugin {
     private DbManager DBManager;
