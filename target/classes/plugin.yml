@@ -17,3 +17,6 @@ commands:
   g-givesword:
     description: Give des swords meta
     permission: g-give.use
+  g-fly:
+    description: Permet de fly
+    permission: g-fly.use

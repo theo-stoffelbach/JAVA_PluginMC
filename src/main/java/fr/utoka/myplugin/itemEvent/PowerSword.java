@@ -1,4 +1,4 @@
-package fr.utoka.myplugin.commands;
+package fr.utoka.myplugin.itemEvent;
 
 import org.bukkit.ChatColor;
 import org.bukkit.enchantments.Enchantment;
@@ -14,15 +14,25 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class SwordEvent implements Listener {
+import java.util.ArrayList;
+
+public class PowerSword implements Listener {
     int killMonsterLevelUpSword = 1;
     int numberKillMonster = 1;
+    private ItemStack currentSword;
+
     @EventHandler
     public void allSword(EntityDamageByEntityEvent event) {
         if (event.getEntity() instanceof Creature && event.getDamager() instanceof Player) {
             Creature creature = (Creature) event.getEntity();
             Player player = (Player) event.getDamager();
             ItemStack weapon = player.getItemInHand();
+            if (weapon != null && weapon.hasItemMeta()) {
+                ItemMeta itemMeta = weapon.getItemMeta();
+                if (itemMeta.hasDisplayName() && itemMeta.getDisplayName().equals(ChatColor.RED + "Blood Sword")) {
+                    currentSword = weapon;
+                }
+            }
             double damage = event.getDamage();
             if (creature instanceof Monster) {
                 if (weapon.hasItemMeta()) {
@@ -31,7 +41,7 @@ public class SwordEvent implements Listener {
                         player.setHealth(player.getHealth() + damage);
                     } else if (itemMeta.hasDisplayName() && itemMeta.getDisplayName().equals(ChatColor.GOLD + "Fire Sword")) {
                         creature.setFireTicks(Integer.MAX_VALUE);
-                    } else if (itemMeta.hasDisplayName() && itemMeta.getDisplayName().equals(ChatColor.BLUE + "Fire Sword")) {
+                    } else if (itemMeta.hasDisplayName() && itemMeta.getDisplayName().equals(ChatColor.BLUE + "Ice Sword")) {
                         PotionEffect slowness = new PotionEffect(PotionEffectType.SLOW, Integer.MAX_VALUE, 3);
                         creature.addPotionEffect(slowness);
                         creature.setFreezeTicks(Integer.MAX_VALUE);
@@ -43,11 +53,13 @@ public class SwordEvent implements Listener {
 
     /**
      * the blood sword is upgrade after each kill monster
+     *
      * @param event take entity death
      */
     @EventHandler
-    public void bloodSword (EntityDeathEvent event) {
+    public void bloodSword(EntityDeathEvent event) {
         if (event.getEntity().getKiller() != null) {
+            ItemMeta itemMeta = currentSword.getItemMeta();
             if (event.getEntity().getType().isSpawnable() && event.getEntity().getType().isAlive()) {
                 Player player = event.getEntity().getKiller();
                 ItemStack weapon = player.getItemInHand();
@@ -58,6 +70,11 @@ public class SwordEvent implements Listener {
                             killMonsterLevelUpSword++;
                             weapon.addEnchantment(Enchantment.DAMAGE_ALL, killMonsterLevelUpSword);
                         }
+                        ItemMeta updatedMeta = currentSword.getItemMeta();
+                        ArrayList<String> updatedLore = new ArrayList<>();
+                        updatedLore.add(0, "Monstre tué : " + numberKillMonster);
+                        updatedMeta.setLore(updatedLore);
+                        currentSword.setItemMeta(updatedMeta);
                     }
                 }
             }
