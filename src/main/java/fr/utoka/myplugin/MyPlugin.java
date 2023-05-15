@@ -18,6 +18,7 @@ import java.util.UUID;
 public final class MyPlugin extends JavaPlugin {
     private DbManager DBManager;
     public HashMap<UUID, Integer> playerMoney = new HashMap<>();
+//    public HashMap<UUID, Number> playerLevel = new HashMap<>();
 
 
     @Override
@@ -25,6 +26,7 @@ public final class MyPlugin extends JavaPlugin {
         System.out.println("Plugin lancé");
 
         this.playerMoney = new HashMap<>();
+//        this.playerLevel = new HashMap<>();
         this.DBManager = new DbManager();
         try {
             createCommandsMoney();
