@@ -19,20 +19,12 @@ public class CommandMoneyService {
 
 
     public void addMoneyToDB(UUID uuid, int moneyAdd) throws SQLException {
-//        System.out.println("My plugin : " + monPlugin + "; Money : "+ moneyAdd);
-        System.out.println("ANCIEN SOLDE : " + monPlugin.playerMoney.get(uuid));
-        System.out.println("AJOUTE A FAIRE : " + moneyAdd);
-
-
         int newMoney = monPlugin.playerMoney.get(uuid) + moneyAdd;
-
 
         final Connection connection = getMoneyConnection.getConnection();
         final PreparedStatement preparedStatement = connection.prepareStatement("UPDATE money SET money=? WHERE uuid=?");
-        System.out.println("1 - AJOUTE REUSSIT : " + newMoney);
         preparedStatement.setInt(1,  newMoney);
         preparedStatement.setString(2, uuid.toString());
-        System.out.println("2 - AJOUTE REUSSIT : " + newMoney);
         preparedStatement.executeUpdate();
     }
     public void addMoneyToHash(UUID uuid, int moneyAdd) {

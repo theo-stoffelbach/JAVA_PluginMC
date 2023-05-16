@@ -12,8 +12,6 @@ import java.util.UUID;
 public class PlayerJoin implements Listener {
 
     private final MyPlugin monPlugin;
-//        Library library = Library.getInstance("La lib de Theo");
-
     public PlayerJoin(MyPlugin monPlugin) {
         this.monPlugin = monPlugin;
     }
@@ -22,13 +20,9 @@ public class PlayerJoin implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event)  {
         final UUID uuid = event.getPlayer().getUniqueId();
         final DbConnection getMoneyConnection = monPlugin.getDBManager().getPlayersData();
-        System.out.println("Test mec 0");
-
 
         try {
         final Connection connection = getMoneyConnection.getConnection();
-            System.out.println("Test mec 1");
-
             final PreparedStatement preparedStatement = connection.prepareStatement("SELECT uuid, money FROM money WHERE uuid = ?");
             preparedStatement.setString(1,uuid.toString());
             final ResultSet resultSet = preparedStatement.executeQuery();
@@ -36,11 +30,9 @@ public class PlayerJoin implements Listener {
             if (resultSet.next()) {
                 final Integer money = resultSet.getInt("money");
                 monPlugin.getPlayerMoney().put(uuid,money);
-                System.out.println("Test mec 2");
                 System.out.println(monPlugin.getPlayerMoney());
 
             }else {
-                System.out.println("Test mec 3");
                 createUser(connection, uuid);
             }
         }catch (SQLException err) {

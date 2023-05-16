@@ -22,11 +22,46 @@ public class CommandMoney implements CommandExecutor{
         this.monPlugin = monPlugin;
     }
 
+        /**
+         * Give at Player money and add at Hashmap and DB.
+         * @param uuid take sender command
+         * @param moneyGive take the amount of money to add
+         */
+        private void giveMoney(UUID uuid,int moneyGive) throws SQLException{
+        managementMoney.addMoneyToDB(uuid,moneyGive);
+        managementMoney.addMoneyToHash(uuid, moneyGive);
+        if (moneyGive != 0) Bukkit.getPlayer(uuid).sendMessage("Vous avez gagner : " + moneyGive + " de la part de " + Bukkit.getPlayer(uuid).getName());
+        }
+
+        /**
+         * remove at Player money and remove at Hashmap and DB.
+         * @param uuid take sender command
+         * @param moneyRemove take the amount of money to remove
+         */
+        public void removeMoney(UUID uuid,int moneyRemove) throws SQLException{
+        managementMoney.removeMoneyToDB(uuid,moneyRemove);
+        managementMoney.removeMoneyToHash(uuid, moneyRemove);
+        }
+
+        /**
+         * Set at Player money and set at Hashmap and DB.
+         * @param uuid take sender command
+         * @param moneyToSet take the amount of money to set
+         */
+        public void setMoney(UUID uuid,int moneyToSet) throws SQLException{
+        managementMoney.setMoneyToDB(uuid,moneyToSet);
+        managementMoney.setMoneyToHash(uuid, moneyToSet);
+        Bukkit.getPlayer(uuid).sendMessage("Ton argent est à : " + moneyToSet + " à cause de/grace à " + Bukkit.getPlayer(uuid).getName());
+        }
+
+    // -------------------------------------------------------------------------------------
+    // Private
+
     /**
-     * @param sender
-     * Command In game to get money of Player
+     * Set at Player money and set at Hashmap and DB.
+     * @param sender it the player
      */
-    private int getMoney(CommandSender sender) {
+    private void getMoney(CommandSender sender) {
         Player player = (Player) sender;
         final UUID uuid = player.getUniqueId();
 
@@ -35,40 +70,90 @@ public class CommandMoney implements CommandExecutor{
         System.out.println("Tien : " + monPlugin.getPlayerMoney().containsKey(uuid));
 
         if (monPlugin.getPlayerMoney().containsKey(uuid)) {
-            return monPlugin.getPlayerMoney().get(uuid);
+            int money = monPlugin.getPlayerMoney().get(uuid);
+            if (money != -1) sender.sendMessage("Vous avez : " + money + "$");
+            return;
         }
-
-        return -1;
+        sender.sendMessage("Merci de vous déconncter et Reconnecter, si l'erreur persiste, merci de contacter le staff");
+        System.out.println("Mince GetMoney Marche pas");
     }
 
-//    private <T extends UUID & Player> void giveMoney(T player,int moneyGive) throws SQLException{
+    private void giveMoney(CommandSender sender, String[] arg) {
+        int moneyGive = 0;
+        if (arg.length == 1) {
+            try {
+                System.out.println("Debug Give money 1");
+                moneyGive = Integer.parseInt(arg[0]);
+                giveMoney(((Player) sender).getUniqueId(), moneyGive);
+            } catch (SQLException err) {
+                err.printStackTrace();
+            }
+        }else if (arg.length == 2) {
+            try {
+                UUID uuid = Bukkit.getPlayer(arg[0]).getUniqueId();
+                moneyGive = Integer.parseInt(arg[1]);
+                giveMoney(uuid,moneyGive);
+            }catch (Exception err) {
+                err.printStackTrace();
+            }
+        }
+    }
 
-    /**
-     * @param uuid, int
-     * Command In game to get money of Player
-     */
-        public void giveMoney(UUID uuid,int moneyGive) throws SQLException{
-//        System.out.println("add money 1");
-        managementMoney.addMoneyToDB(uuid,moneyGive);
-//        System.out.println("add money 2");
-        managementMoney.addMoneyToHash(uuid, moneyGive);
+    private void removeMoney(CommandSender sender, String[] arg) {
+        Player playerAffected = null;
+        int moneyToRemove = 0;
+        if (arg.length == 1) {
+            try {
+                moneyToRemove = Integer.parseInt(arg[0]);
+                removeMoney(((Player) sender).getUniqueId(), moneyToRemove);
+                playerAffected = (Player) sender;
+            } catch (SQLException err) {
+                err.printStackTrace();
+            }
+        }
+        else if (arg.length == 2) {
+            try {
+                UUID uuid = Bukkit.getPlayer(arg[0]).getUniqueId();
+                moneyToRemove = Integer.parseInt(arg[1]);
+                removeMoney(uuid,moneyToRemove);
+                playerAffected = Bukkit.getPlayer(arg[0]);
+            }catch (Exception err) {
+                err.printStackTrace();
+            }
+        }
+        else sender.sendMessage("Cette commande ne dispose que de 3 commentaire fait un /g-help pour plus d'info");
     }
-    /**
-     * @param uuid, int
-     * Command In game to Remove money of Player
-     */
-        public void removeMoney(UUID uuid,int moneyGive) throws SQLException{
-        System.out.println("remove money 1");
-        managementMoney.removeMoneyToDB(uuid,moneyGive);
-        System.out.println("remove money 2");
-        managementMoney.removeMoneyToHash(uuid, moneyGive);
+
+    private void setMoney(CommandSender sender, String[] arg) {
+        System.out.println("SetMoney 0");
+        int moneySet = 0;
+        Player playerAffected = null;
+        if (arg.length == 1) {
+            try {
+                System.out.println("SetMoney 1");
+                moneySet = Integer.parseInt(arg[0]);
+                setMoney(((Player) sender).getUniqueId(), moneySet);
+                playerAffected = (Player) sender;
+            } catch (SQLException err) {
+                err.printStackTrace();
+            }
+        }
+        if (arg.length == 2) {
+            try {
+                UUID uuid = Bukkit.getPlayer(arg[0]).getUniqueId();
+                moneySet = Integer.parseInt(arg[1]);
+                setMoney(uuid,moneySet);
+                playerAffected = Bukkit.getPlayer(arg[0]);
+            }catch (Exception err) {
+                err.printStackTrace();
+            }
+        }else {
+            sender.sendMessage("Cette commande ne dispose que de 3 commentaire fait un /g-help pour plus d'info");
+        }
     }
-        public void setMoney(UUID uuid,int moneyToSet) throws SQLException{
-        System.out.println("set money 1");
-        managementMoney.setMoneyToDB(uuid,moneyToSet);
-        System.out.println("set money 2");
-        managementMoney.setMoneyToHash(uuid, moneyToSet);
-    }
+
+    // -------------------------------------------------------------------------------------
+    // Command
 
     /**
      * @param sender, cmd, msg, arg
@@ -79,76 +164,10 @@ public class CommandMoney implements CommandExecutor{
         System.out.println(monPlugin.getPlayerMoney());
 
         if (sender instanceof Player) {
-            if (cmd.getName().equalsIgnoreCase("getMoney")) {
-                int money = getMoney(sender);
-                if (money != -1) sender.sendMessage("Vous avez : " + money + "$");
-                else sender.sendMessage("Merci de vous déconncter et Reconnecter, si l'erreur persiste, merci de contacter le staff");
-            }
-            else if (cmd.getName().equalsIgnoreCase("giveMoney")) {
-                int moneyGive = 0;
-                if (arg.length == 1) {
-                    try {
-                        System.out.println("Debug Give money 1");
-                        moneyGive = Integer.parseInt(arg[0]);
-                        giveMoney(((Player) sender).getUniqueId(), moneyGive);
-                    } catch (SQLException err) {
-                        err.printStackTrace();
-                    }
-                }else if (arg.length == 2) {
-                    try {
-                        UUID uuid = Bukkit.getPlayer(arg[0]).getUniqueId();
-                        moneyGive = Integer.parseInt(arg[1]);
-                        giveMoney(uuid,moneyGive);
-                    }catch (Exception err) {
-                        err.printStackTrace();
-                    }
-                }
-                if (moneyGive != 0) sender.sendMessage("Vous avez gagner : " + moneyGive + (arg.length==2?" de la part de " + sender.getName():"") + ".");
-            }
-            else if (cmd.getName().equalsIgnoreCase("removeMoney")) {
-                int moneyToRemove = 0;
-                if (arg.length == 1) {
-                    try {
-                        moneyToRemove = Integer.parseInt(arg[0]);
-                        removeMoney(((Player) sender).getUniqueId(), moneyToRemove);
-                    } catch (SQLException err) {
-                        err.printStackTrace();
-                    }
-                }
-                if (arg.length == 2) {
-                    try {
-                        UUID uuid = Bukkit.getPlayer(arg[0]).getUniqueId();
-                        moneyToRemove = Integer.parseInt(arg[1]);
-                        removeMoney(uuid,moneyToRemove);
-                    }catch (Exception err) {
-                        err.printStackTrace();
-                    }
-                }
-                if (moneyToRemove != 0) sender.sendMessage("Tu as perdu : " + moneyToRemove + (arg.length==2?" à cause de " + sender.getName():"") + ".");
-            }
-            else if (cmd.getName().equalsIgnoreCase("setMoney")) {
-                System.out.println("SetMoney 0");
-                int moneySet = 0;
-                if (arg.length == 1) {
-                    try {
-                        System.out.println("SetMoney 1");
-                        moneySet = Integer.parseInt(arg[0]);
-                        setMoney(((Player) sender).getUniqueId(), moneySet);
-                    } catch (SQLException err) {
-                        err.printStackTrace();
-                    }
-                }
-                if (arg.length == 2) {
-                    try {
-                        UUID uuid = Bukkit.getPlayer(arg[0]).getUniqueId();
-                        moneySet = Integer.parseInt(arg[1]);
-                        setMoney(uuid,moneySet);
-                    }catch (Exception err) {
-                        err.printStackTrace();
-                    }
-                }
-                if (moneySet != 0) sender.sendMessage("Ton argent est à : " + moneySet + (arg.length==2?" à cause de/grace à " + sender.getName():"") + ".");
-            }
+            if (cmd.getName().equalsIgnoreCase("g-getMoney")) getMoney(sender);
+            else if (cmd.getName().equalsIgnoreCase("g-giveMoney")) giveMoney(sender,arg);
+            else if (cmd.getName().equalsIgnoreCase("g-removeMoney")) removeMoney(sender, arg);
+            else if (cmd.getName().equalsIgnoreCase("g-setMoney")) setMoney(sender,arg);
         }
 
         return false;
