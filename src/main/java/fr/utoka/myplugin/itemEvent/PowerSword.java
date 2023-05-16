@@ -67,9 +67,8 @@ public class PowerSword implements Listener {
                     if (weapon.getItemMeta().hasDisplayName() && weapon.getItemMeta().getDisplayName().equals(ChatColor.RED + "Blood Sword")) {
                         numberKillMonster++;
                         int levelOfSharpness = numberKillMonster/10;
-//                        if (levelOfSharpness == 0) levelOfSharpness = 1;
                         System.out.println("Sharpness : " + levelOfSharpness);
-                        if (levelOfSharpness != 0) weapon.addEnchantment(Enchantment.DAMAGE_ALL, levelOfSharpness);
+                        weapon.addEnchantment(Enchantment.DAMAGE_ALL, levelOfSharpness);
 
                         ItemMeta updatedMeta = currentSword.getItemMeta();
                         ArrayList<String> updatedLore = new ArrayList<>();
