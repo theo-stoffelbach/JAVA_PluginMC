@@ -1,0 +1,9 @@
+fr.utoka.myplugin
+fr.utoka.myplugin.commands
+fr.utoka.myplugin.DB
+fr.utoka.myplugin.Entity
+fr.utoka.myplugin.events
+fr.utoka.myplugin.itemEvent
+fr.utoka.myplugin.Listener
+fr.utoka.myplugin.recipes
+fr.utoka.myplugin.Service
