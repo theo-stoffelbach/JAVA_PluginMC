@@ -1,10 +1,8 @@
 package fr.utoka.myplugin.itemEvent;
 
-import fr.utoka.myplugin.events.EventMenu;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,6 +13,9 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 
+/**
+ * This class contain many function for sword
+ */
 public class SwordEvent implements Listener {
     /**
      * Create sword with meta item
@@ -23,7 +24,7 @@ public class SwordEvent implements Listener {
      */
     public void giveSwordMeta(CommandSender sender, String input) {
         Player player = (Player) sender;
-        fr.utoka.myplugin.events.EventMenu eventMenu = new EventMenu();
+        EventMenu eventMenu = new EventMenu();
         switch (input) {
             case "vampire":
                 player.getInventory().addItem(eventMenu.createMetaItem(Material.NETHERITE_SWORD, ChatColor.DARK_PURPLE + "Vampire Sword", null, null));
@@ -39,8 +40,12 @@ public class SwordEvent implements Listener {
                 break;
         }
     }
+
+    /** this function clear inventory of player
+     * @param event take player when join server
+     */
     @EventHandler
-    public void giveCompassJoin (PlayerJoinEvent event) {
+    public void clearInventoyJoin (PlayerJoinEvent event) {
         Player player = event.getPlayer();
         player.getInventory().clear();
     }
@@ -54,6 +59,9 @@ public class SwordEvent implements Listener {
         ArrayList<String> list = new ArrayList<>();
         list.add(ChatColor.GOLD + "Fire Sword");
         list.add(ChatColor.DARK_PURPLE + "Vampire Sword");
+        list.add(ChatColor.GOLD + "Fire Sword");
+        list.add(ChatColor.RED + "Blood Sword");
+        list.add(ChatColor.BLUE + "Ice Sword");
         ItemStack item = event.getItem();
         if (item.hasItemMeta()) {
             boolean found = false;

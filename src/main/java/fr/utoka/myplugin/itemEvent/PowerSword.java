@@ -16,6 +16,9 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
 
+/**
+ * This class contains many function for power sword
+ */
 public class PowerSword implements Listener {
     int killMonsterLevelUpSword = 1;
     int numberKillMonster = 1;
@@ -63,7 +66,6 @@ public class PowerSword implements Listener {
     @EventHandler
     public void bloodSword(EntityDeathEvent event) {
         if (event.getEntity().getKiller() != null) {
-            ItemMeta itemMeta = currentSword.getItemMeta();
             if (event.getEntity().getType().isSpawnable() && event.getEntity().getType().isAlive()) {
                 Player player = event.getEntity().getKiller();
                 ItemStack weapon = player.getItemInHand();

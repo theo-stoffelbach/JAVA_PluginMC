@@ -10,6 +10,9 @@ import org.bukkit.entity.Player;
 
 import java.util.Objects;
 
+/**
+ * Create commands
+ */
 public class allCommands implements CommandExecutor {
 
     @Override

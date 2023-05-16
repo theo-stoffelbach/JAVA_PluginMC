@@ -1,5 +1,8 @@
 package fr.utoka.myplugin.Listener;
 
+/**
+ * Enum info how to gain money if the monster killed
+ */
 public enum EntityInfo {
     CREEPER(3),
     AXOLOTL(-1000),

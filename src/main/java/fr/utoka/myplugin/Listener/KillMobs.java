@@ -9,6 +9,9 @@ import org.bukkit.event.entity.EntityDeathEvent;
 
 import java.sql.SQLException;
 
+/**
+ * This class give money on the db
+ */
 public class KillMobs implements Listener {
 
     @EventHandler

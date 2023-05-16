@@ -15,7 +15,15 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
+
+/**
+ * This class create menu with a compass
+ */
 public class EventMenu implements Listener {
+    /**
+     * This function create inventory for menu
+     * @param event event when player interact with item
+     */
     @EventHandler
     public void Menu(PlayerInteractEvent event) {
         ArrayList<String> lore = new ArrayList<>();
@@ -53,6 +61,9 @@ public class EventMenu implements Listener {
         return rpg;
     }
 
+    /**
+     * @param event event when player click on the item
+     */
     @EventHandler
     public void onClick(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
