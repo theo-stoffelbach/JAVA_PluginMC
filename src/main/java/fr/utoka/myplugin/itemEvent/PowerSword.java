@@ -21,8 +21,12 @@ public class PowerSword implements Listener {
     int numberKillMonster = 1;
     private ItemStack currentSword;
 
+    /**
+     * This function create meta item sword
+     * @param event Take entity wich take damage
+     */
     @EventHandler
-    public void allSword(EntityDamageByEntityEvent event) {
+    public void basicSword(EntityDamageByEntityEvent event) {
         if (event.getEntity() instanceof Creature && event.getDamager() instanceof Player) {
             Creature creature = (Creature) event.getEntity();
             Player player = (Player) event.getDamager();
@@ -52,7 +56,7 @@ public class PowerSword implements Listener {
     }
 
     /**
-     * the blood sword is upgrade after each kill monster
+     * the blood sword is upgrade after each kill monster, this upgrade begin after 10 kills
      *
      * @param event take entity death
      */
@@ -66,11 +70,10 @@ public class PowerSword implements Listener {
                 if (weapon.hasItemMeta()) {
                     if (weapon.getItemMeta().hasDisplayName() && weapon.getItemMeta().getDisplayName().equals(ChatColor.RED + "Blood Sword")) {
                         numberKillMonster++;
-                        int levelOfSharpness = numberKillMonster/10;
-//                        if (levelOfSharpness == 0) levelOfSharpness = 1;
-                        System.out.println("Sharpness : " + levelOfSharpness);
-                        if (levelOfSharpness != 0) weapon.addEnchantment(Enchantment.DAMAGE_ALL, levelOfSharpness);
-
+                        if (numberKillMonster >= 10) {
+                            killMonsterLevelUpSword++;
+                            weapon.addEnchantment(Enchantment.DAMAGE_ALL, killMonsterLevelUpSword);
+                        }
                         ItemMeta updatedMeta = currentSword.getItemMeta();
                         ArrayList<String> updatedLore = new ArrayList<>();
                         updatedLore.add(0, "Monstre tué : " + numberKillMonster);
