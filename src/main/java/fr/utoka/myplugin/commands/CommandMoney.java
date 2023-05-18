@@ -17,7 +17,6 @@ public class CommandMoney implements CommandExecutor{
     private final MyPlugin monPlugin ;
     private final CommandMoneyService managementMoney = CommandMoneyService.getInstance();
 
-
     public CommandMoney(MyPlugin monPlugin)  {
         this.monPlugin = monPlugin;
     }
