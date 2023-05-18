@@ -32,34 +32,25 @@ public final class MyPlugin extends JavaPlugin {
     public void onEnable() {
         System.out.println("Plugin lancé");
 
-        this.playerMoney = new HashMap<>();
-//        this.playerLevel = new HashMap<>();
-        this.DBManager = new DbManager();
-        try {
-            createCommandsMoney();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        event();
-    }
-
-    public void event () {
-        this.getServer().getPluginManager().registerEvents(new PlayerJoin(this),this);
-
+        initCommand();
         Manager manager = new Manager();
 
         manager.managementCommand(this);
         manager.managementEvents(this);
     }
+
     @Override
     public void onDisable() {
-//        this.DBManager.close();
+        this.DBManager.close();
         System.out.println("Plugin eteint");
     }
 
-    private void createCommandsMoney() throws SQLException {
-        CommandMoneyService.getInstance(this);
+    private void initCommand() {
+        this.playerMoney = new HashMap<>();
+//        this.playerLevel = new HashMap<>();
+        this.DBManager = new DbManager();
 
+        CommandMoneyService.getInstance(this);;
     }
 
     public DbManager getDBManager() {

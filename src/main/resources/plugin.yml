@@ -24,6 +24,9 @@ commands:
   g-help:
     description: Aide pour les commandes
     permission: g-aide.use
+  g-spwanmob:
+    description: Permet de faire spawn des mobs customes
+    permission: g-spwanmob
   g-givesword:
     description: Give des swords meta
     permission: g-give.use
