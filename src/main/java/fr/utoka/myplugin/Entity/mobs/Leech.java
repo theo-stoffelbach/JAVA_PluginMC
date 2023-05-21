@@ -71,9 +71,9 @@ public class Leech implements Listener {
         if (event.getDamager() instanceof Zombie) {
             MetadataValue customMeta = (MetadataValue) event.getEntity().getMetadata("CustomMobs");
 
-            if (customMeta == "Leech") {
-
-            }
+//            if () {
+//
+//            }
         }
     }
 }
